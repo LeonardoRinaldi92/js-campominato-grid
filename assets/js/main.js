@@ -1,16 +1,23 @@
 let grid = document.querySelector(".griglia")
-let numeri= [];
+let difficolta = document.querySelector("#difficolta")
 
-for (i=1;i<=100;i++){
-    numeroRandom = (Math.floor(Math.random() * 100))+1;
-    if (numeri.includes(numeroRandom) ) {
-        i--
-    } else {
-        numeri.push(numeroRandom)
+//funziona crea un array con x numeri casuali non ripetuti
+function numericasuali (int){
+    let array = [];
+
+    for (i=1;i<=int;i++){
+        numeroRandom = (Math.floor(Math.random() * int))+1;
+        if (array.includes(numeroRandom) ) {
+            i--
+        } else {
+            array.push(numeroRandom)
+        }
     }
+    return array;
 }
 
 
+//funziona crea un box  
 function creaBox (classeScelta,numero) {
     let elemento = document.createElement( "div" )
     elemento.className = classeScelta
@@ -23,6 +30,12 @@ function creaBox (classeScelta,numero) {
 
 }
 
- for (let i= 0; i<=99; i++){
-      creaBox("box",numeri[i])
+//al cambio delle opzioni sulla select
+difficolta.addEventListener("change", function(){
+    difficolta = parseInt(document.querySelector("#difficolta").value)
+    let numeri = numericasuali(difficolta);
+
+    for (let i= 1; i<=numeri.length; i++){
+        creaBox("box",numeri[i-1])
   }
+})    
