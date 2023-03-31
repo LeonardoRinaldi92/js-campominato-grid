@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    padding: 5rem;
+}
+
+.griglia {
+    width: 80%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    border: 1px solid black;
+    flex-basis: 10%;
+    aspect-ratio: 1;
+
+}
