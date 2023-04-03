@@ -4,6 +4,20 @@ let difficoltaselect = document.querySelector("#difficolta")
 let ricomincia = document.querySelector("#ricomincia")
 let vai = document.querySelector("#selectButton")
 
+let punteggio = 0;
+
+function addPunteggio() {
+    return punteggio++;
+}
+
+function showPunteggio() {
+    return document.getElementById('punteggio').innerText = punteggio;
+}
+
+function resetPunteggio() {
+    return punteggio = 0;
+}
+
 //funziona crea un array con x numeri casuali non ripetuti
 function numericasuali (int){
     let array = [];
@@ -44,6 +58,8 @@ ricomincia.addEventListener("click" , function (){
     ricomincia.classList.add ("none")
     difficoltaContainer.classList.remove ("none")
     gioco = true;
+    resetPunteggio();
+    showPunteggio();
 })
 
 //funziona crea un box  
@@ -67,13 +83,16 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
             if (contenitorebombe.includes(numero)) {
                 gioco = false;
                 ricomincia.classList.remove("none")
+
                 
                 for(x = 0; x < contenitorebombe.length; x++){
                     let bomba = document.querySelector(`.box-${contenitorebombe[x]}`);
                     bomba.classList.add('rosso');
                 }
-            } else {
+            } else if (! this.classList.contains('blu'))  {
                 this.classList.add ("blu")    
+                addPunteggio()
+                showPunteggio() 
             }        
         }
     })

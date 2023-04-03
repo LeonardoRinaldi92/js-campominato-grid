@@ -121,3 +121,11 @@ header h3 {
 #actualScore {
     margin-right: 1rem;
 }
+
+
+#ricomincia {
+    font-size: 2rem;
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
