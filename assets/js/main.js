@@ -1,5 +1,5 @@
 let grid = document.querySelector(".griglia")
-let difficolta = document.querySelector("#difficolta")
+let difficoltaselect = document.querySelector("#difficolta")
 
 //funziona crea un array con x numeri casuali non ripetuti
 function numericasuali (int){
@@ -57,10 +57,8 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
                     let bomba = document.querySelector(`.box-${contenitorebombe[x]}`);
                     bomba.classList.add('rosso');
                 }
-                console.log(gioco)
-                
             } else {
-                console.log(gioco)
+
                 this.classList.add ("blu")
             }
         }
@@ -73,24 +71,22 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
 //al cambio delle opzioni sulla select
 difficolta.addEventListener("change", function(){
     difficolta = parseInt(document.querySelector("#difficolta").value)
+    difficoltaselect.classList.add("none")
+    
     grid.innerHTML = "";
 
     let bomberandom  = bombe(difficolta);
 
-    console.log (bomberandom)
     if  (difficolta === 100 ){
         grid.classList.remove("w72", "w56");
-        grid.classList.add("w80", "flex")
+        grid.classList.add("w80", "flex");
    } else if (difficolta === 81) {
-        grid.classList.remove("80", "w56");
-       grid.classList.add("w72", "flex")
+        grid.classList.remove("w80", "w56");
+        grid.classList.add("w72", "flex")
    } else if (difficolta === 49) {
         grid.classList.remove("w72", "w80");
         grid.classList.add ("w56", "flex")
-   } else {
-        grid.classList.remove("w72", "w80","w56", "flex")
-        grid.classList.add ("none")
-    }
+   } 
     let numeri = numericasuali(difficolta);
 
     for (let i= 1; i<=numeri.length; i++){

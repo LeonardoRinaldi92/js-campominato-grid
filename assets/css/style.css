@@ -76,3 +76,7 @@ body {
     background-color: rgb(255, 0, 0);
     color: white;
 }
+
+.none {
+    display: none;
+}
