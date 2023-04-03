@@ -1,6 +1,8 @@
 let grid = document.querySelector(".griglia")
+let difficoltaContainer = document.querySelector("#difficoltacontainer")
 let difficoltaselect = document.querySelector("#difficolta")
-
+let actualScore = document.querySelector("#actualScore")
+let ricomincia = document.querySelector("#ricomincia")
 //funziona crea un array con x numeri casuali non ripetuti
 function numericasuali (int){
     let array = [];
@@ -34,6 +36,14 @@ function bombe (int){
 
 let gioco = true;
 
+ricomincia.addEventListener("click" , function (){
+    grid.classList.remove ("w72", "w56", "w80", "flex")
+    grid.innerHTML = ""
+    ricomincia.classList.add ("none")
+    difficoltaContainer.classList.remove ("none")
+    gioco = true;
+})
+
 //funziona crea un box  
 function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
     let elemento = document.createElement( "div" )
@@ -48,19 +58,21 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
         elemento.classList.add ("sq7")
     }
 
+   
     elemento.addEventListener("click",function(){
         if(gioco){
+             
             if (contenitorebombe.includes(numero)) {
                 gioco = false;
-
+                ricomincia.classList.remove("none")
+                
                 for(x = 0; x < contenitorebombe.length; x++){
                     let bomba = document.querySelector(`.box-${contenitorebombe[x]}`);
                     bomba.classList.add('rosso');
                 }
             } else {
-
                 this.classList.add ("blu")
-            }
+            }        
         }
     })
     
@@ -68,11 +80,12 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
 
 }
 
+
+
 //al cambio delle opzioni sulla select
 difficolta.addEventListener("change", function(){
     difficolta = parseInt(document.querySelector("#difficolta").value)
-    difficoltaselect.classList.add("none")
-    
+    difficoltaContainer.classList.add("none")
     grid.innerHTML = "";
 
     let bomberandom  = bombe(difficolta);
@@ -92,4 +105,5 @@ difficolta.addEventListener("change", function(){
     for (let i= 1; i<=numeri.length; i++){
         creaBox("box",numeri[i-1],difficolta,bomberandom)
   }
+
 })    

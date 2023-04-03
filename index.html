@@ -7,22 +7,40 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>js-campominato-grid</title>
 </head>
-<body> 
-    <!-- titoli e selezione difficolta -->
-    <section>
-
-        <div class="container">
-            <select name="" id="difficolta">
-                <option> scegli</option>
+<body>
+    <header>
+        <h1 >
+            CAMPO MINATO
+        </h1>
+        <h3 id="actualScore">
+            Punti:
+        </h3>
+        <a id="ricomincia" class="none" href="#">RICOMINCIA</a>
+        <div class="flex" id="difficoltacontainer">
+            <h4>
+                scegli la difficoltà :
+            </h4>
+            <select name="" id="difficolta" class="selectDiff">
+                <option value="0" disabled selected>scegli</option>
                 <option value="100">10 x 10</option>
                 <option value="81">9 x 9</option>
                 <option value="49">7 x 7</option>
             </select>
+            <button id="selectButton">
+                vai!
+            </button>
+        </div>
+
+    </header> 
+    <!-- titoli e selezione difficolta -->
+    <main>
+        <div class="container">          
             <div class="griglia">
             </div>
-
         </div>
-    </section>
+    </main>
+    <footer>
+    </footer>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
