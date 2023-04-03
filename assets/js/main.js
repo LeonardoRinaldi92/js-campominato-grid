@@ -63,7 +63,6 @@ ricomincia.addEventListener("click" , function (){
     punteggio=0;
     showPunteggio();
 
-
 })
 
 //funziona crea un box  
