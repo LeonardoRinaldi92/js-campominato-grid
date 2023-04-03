@@ -32,12 +32,13 @@ function bombe (int){
 }
 
 
-
+let gioco = true;
 
 //funziona crea un box  
-function creaBox (classeScelta,numero,difficolta) {
+function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
     let elemento = document.createElement( "div" )
     elemento.className = classeScelta
+    elemento.classList.add('box-' + numero)
     elemento.innerText = numero
      if (difficolta === 100 ){
          elemento.classList.add("sq10")
@@ -46,10 +47,25 @@ function creaBox (classeScelta,numero,difficolta) {
     } else if (difficolta === 49) {
         elemento.classList.add ("sq7")
     }
+
     elemento.addEventListener("click",function(){
-        this.classList.add("blu");
-        console.log(numero)
+        if(gioco){
+            if (contenitorebombe.includes(numero)) {
+                gioco = false;
+
+                for(x = 0; x < contenitorebombe.length; x++){
+                    let bomba = document.querySelector(`.box-${contenitorebombe[x]}`);
+                    bomba.classList.add('rosso');
+                }
+                console.log(gioco)
+                
+            } else {
+                console.log(gioco)
+                this.classList.add ("blu")
+            }
+        }
     })
+    
     return grid.append(elemento)
 
 }
@@ -78,6 +94,6 @@ difficolta.addEventListener("change", function(){
     let numeri = numericasuali(difficolta);
 
     for (let i= 1; i<=numeri.length; i++){
-        creaBox("box",numeri[i-1],difficolta)
+        creaBox("box",numeri[i-1],difficolta,bomberandom)
   }
 })    
