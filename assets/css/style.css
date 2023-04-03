@@ -117,3 +117,7 @@ header h3 {
     padding: 5px 10px;
 }
 
+#ricomincia,
+#actualScore {
+    margin-right: 1rem;
+}
