@@ -3,20 +3,16 @@ let difficoltaContainer = document.querySelector("#difficoltacontainer")
 let difficoltaselect = document.querySelector("#difficolta")
 let ricomincia = document.querySelector("#ricomincia")
 let vai = document.querySelector("#selectButton")
-
+let bestscore = document.querySelector("#bestScore")
+let bestpunteggio = 0;
 let punteggio = 0;
 
-function addPunteggio() {
-    return punteggio++;
-}
-
+//mostra punteggio aggiornato
 function showPunteggio() {
     return document.getElementById('punteggio').innerText = punteggio;
 }
 
-function resetPunteggio() {
-    return punteggio = 0;
-}
+
 
 //funziona crea un array con x numeri casuali non ripetuti
 function numericasuali (int){
@@ -58,8 +54,16 @@ ricomincia.addEventListener("click" , function (){
     ricomincia.classList.add ("none")
     difficoltaContainer.classList.remove ("none")
     gioco = true;
-    resetPunteggio();
+    bestscore.classList.remove ("none")
+    // se il punteggio è maggiore del best diventa best
+    if (punteggio > bestpunteggio){
+        bestpunteggio = punteggio
+    }
+    document.querySelector("#bestpunteggio").innerText = bestpunteggio;
+    punteggio=0;
     showPunteggio();
+
+
 })
 
 //funziona crea un box  
@@ -91,7 +95,7 @@ function creaBox (classeScelta,numero,difficolta,contenitorebombe) {
                 }
             } else if (! this.classList.contains('blu'))  {
                 this.classList.add ("blu")    
-                addPunteggio()
+                punteggio++;
                 showPunteggio() 
             }        
         }
